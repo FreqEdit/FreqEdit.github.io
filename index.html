@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="FreqEdit Preserving High-Frequency Features for Robust Multi-Turn Image Editing">
+  <meta name="keywords" content="Multi-Turn Image Editing, High-Frequency Features, Diffusion Models, Text-to-Image Generation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>FreqEdit</title>
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">FreqEdit: Preserving High-Frequency Features for Robust Multi-Turn Image Editing</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                  Yucheng Liao<sup>1*</sup>,</span>
+                <span class="author-block">
+                  Jiajun Liang<sup>1*</sup>,</span>
+                <span class="author-block">
+                  Kaiqian Cui<sup>1*</sup>,
+                </span>
+                <span class="author-block">
+                  Baoquan Zhao<sup>1</sup>,
+                </span>
+                <span class="author-block">
+                  Haoran Xie<sup>2</sup>,
+                </span>
+                <span class="author-block">
+                  Wei Liu<sup>3</sup>,
+                </span>
+                <span class="author-block">
+                  Qing Li<sup>4</sup>,
+                </span>
+                <span class="author-block">
+                  Xudong Mao<sup>1</sup>
+                </span>
+                </div>
+
+                <div class="is-size-5 publication-authors">
+                  <span class="author-block">
+                    <sup>1</sup>Sun Yat-sen University
+                    <sup>2</sup>Lingnan University<br>
+                    <sup>3</sup>Video Rebirth
+                    <sup>4</sup>The Hong Kong Polytechnic University
+                    
+                  </span>
+                  <span class="eql-cntrb"><small><br><sup>*</sup>  Indicates Equal Contribution</small></span>
+                  </div>
+
+                <div class="column has-text-centered">
+                  <div class="publication-links">
+                        <span class="link-block">
+                      <a href="https://arxiv.org/" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Paper</span>
+                    </a>
+                  </span>
+
+                  <span class="link-block">
+                  <a href="https://github.com/" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://arxiv.org/" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="static/images/teaser.png"/>
+      </div>
+  </div>
+</section>
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Instruction-based image editing through natural language has emerged as a powerful paradigm for intuitive visual manipulation. While recent models achieve impressive results on single edits, they suffer from severe quality degradation under multi-turn editing. Through systematic analysis, we identify progressive loss of high-frequency information as the primary cause of this quality degradation. We present FreqEdit, a training-free framework that enables stable editing across 10+ consecutive iterations. Our approach comprises three synergistic components: (1) high-frequency feature injection from reference velocity fields to preserve fine-grained details, (2) an adaptive injection strategy that spatially modulates injection strength for precise region-specific control, and (3) a path compensation mechanism that periodically recalibrates the editing trajectory to prevent over-constraint.  Extensive experiments demonstrate that FreqEdit achieves superior performance in both identity preservation and instruction following compared to seven state-of-the-art baselines. Code will be made publicly available.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container  is-max-desktop">
+      <h2 class="title is-3">Method Overview: High-Frequency Feature Injection Pipeline</h2>
+      
+      <img src="static/images/framework.png" alt="High-Frequency Feature Injection Pipeline of FreqEdit" class="blend-img-background center-image"/>
+    
+      <div class="level-set has-text-justified">
+        <p>
+          We introduce FreqEdit, a training-free framework that preserves high-fidelity visual consistency and instruction following across extended multi-turn editing sessions. Our core strategy is to strategically reinforce high-frequency information during early denoising steps, when these components are most vulnerable to degradation. This vulnerability arises because early denoising steps primarily establish low-frequency global structure, making high-frequency details susceptible to suppression. 
+        </p>
+        <br>
+        <p>
+          Specifically, we first construct a reference velocity field from the context image (i.e., the input image for the current editing turn) containing rich high-frequency details, and then inject these high-frequency components into the editing velocity field to counteract progressive degradation. However, naively applying uniform injection would either overly constrain edited regions or compromise the integrity of unedited areas. We therefore propose an adaptive injection strategy that spatially modulates the reference strength based on automatically predicted editing masks, ensuring that unedited regions maintain their original fidelity while edited regions retain sufficient flexibility for meaningful transformations. Furthermore, continuous high-frequency injection can overly restrict the generation process, potentially leading to incomplete or suboptimal edits. To address this, we introduce a path compensation mechanism that progressively recalibrates the editing trajectory, dynamically steering it back toward the intended editing direction.
+        </p>
+      </div>
+    </div>
+   </div>
+ </div>
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Comparison to Baseline</h2>
+      
+      <div class="has-text-centered">
+        <img src="static/images/exp_5_01.png" alt="comparison" style="display: block; width: 100%; margin-bottom: 10px;"/>
+        <img src="static/images/exp_6_01.png" alt="comparison" style="display: block; width: 100%; margin-bottom: 10px;"/>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">More Results</h2>
+      
+      <div class="has-text-centered">
+        <img src="static/images/one_exp_1.png" alt="Cat toy result" style="display: block; width: 100%; margin-bottom: 10px;"/>
+        <img src="static/images/one_exp_5.png" alt="Clock result" style="display: block; width: 100%; margin-bottom: 10px;"/>
+        <img src="static/images/one_exp_2.png" alt="Furby result" style="display: block; width: 100%; margin-bottom: 10px;"/>
+        <img src="static/images/one_exp_6.png" alt="Teddybear result" style="display: block; width: 100%; margin-bottom: 10px;"/>
+        <img src="static/images/one_exp_3.png" alt="Pot result" style="display: block; width: 100%; margin-bottom: 10px;"/>
+        <img src="static/images/one_exp_7.png" alt="Pot result" style="display: block; width: 100%; margin-bottom: 10px;"/>
+        <img src="static/images/one_exp_4.png" alt="Pot result" style="display: block; width: 100%; margin-bottom: 10px;"/>
+        <img src="static/images/one_exp_8.png" alt="Pot result" style="display: block; width: 100%; margin-bottom: 10px;"/>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>
+        @article{liao2025freqedit,
+        title={FreqEdit Preserving High-Frequency Features for Robust Multi-Turn Image Editing},
+        author={Yucheng Liao, Jiajun Liang, Kaiqian Cui, Baoquan Zhao, Haoran Xie, Wei Liu, Li Qing, Xudong Mao},
+        journal={},
+        year={2025}
+        }
+      </code></pre>
+    </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+  </html>
